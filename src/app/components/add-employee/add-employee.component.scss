@@ -1,0 +1,17 @@
+h1 {
+  text-align: center;
+}
+
+form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  direction: rtl;
+}
+
+button {
+  margin-bottom: 20px;
+  background-color: #e3f1e3;
+  box-shadow: 4px 3px 4px rgba(0, 0, 0, 0.1);
+}

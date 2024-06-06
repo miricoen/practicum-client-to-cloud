@@ -1,0 +1,22 @@
+// // _custom-theme.scss
+
+// // Import the Angular Material theme
+// @import '~@angular/material/theming';
+
+// // Define custom colors
+// $custom-grey-light: #f5f5f5;
+// $custom-orange-light: #ffcc80;
+
+// // Define custom theme
+// $custom-primary: mat-palette($custom-orange-light, 700);
+// $custom-accent: mat-palette($custom-grey-light, 200);
+// $custom-warn: mat-palette($mat-red);
+
+// $custom-theme: mat-light-theme(
+//   $custom-primary,
+//   $custom-accent,
+//   $custom-warn
+// );
+
+// // Include theme styles for Material components
+// @include angular-material-theme($custom-theme);

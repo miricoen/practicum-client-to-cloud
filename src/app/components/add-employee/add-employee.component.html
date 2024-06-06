@@ -1,0 +1,141 @@
+<h1>הוספת עובד חדש למערך</h1>
+
+<form
+  [formGroup]="addEmployeeForm"
+  (ngSubmit)="onSubmit()"
+  *ngIf="addEmployeeForm"
+>
+  <mat-form-field>
+    <mat-label>שם פרטי</mat-label>
+    <input matInput formControlName="firstName" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>שם משפחה</mat-label>
+    <input matInput formControlName="lastName" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>תעודת זהות</mat-label>
+    <input matInput formControlName="tz" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>תאריך לידה:</mat-label>
+    <input
+      matInput
+      [matDatepickerFilter]="filterBornDate"
+      [matDatepicker]="bornDate"
+      formControlName="bornDate"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="bornDate"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #bornDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>תאריך תחילת עבודה:</mat-label>
+    <input
+      matInput
+      [matDatepickerFilter]="filterStartDate"
+      [matDatepicker]="startDate"
+      formControlName="startDate"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="startDate"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #startDate></mat-datepicker>
+  </mat-form-field>
+
+  <div>
+    <label>מגדר</label>
+    <mat-radio-group
+      aria-label="isMale"
+      ngDefaultControl
+      formControlName="isMale"
+    >
+      <mat-radio-button value="true">זכר</mat-radio-button>
+      <mat-radio-button value="false">נקבה</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div formArrayName="roles">
+    <div *ngFor="let role of rolesFormArray.controls; let i = index">
+      <div [formGroupName]="i"></div>
+      <div [formGroupName]="i">
+        <label>פרטי עבודה {{ i + 1 }}</label>
+        <div>
+          <mat-form-field>
+            <mat-label>סוג העבודה:</mat-label>
+            <mat-select formControlName="typeOfRoleId">
+              <mat-option
+                *ngFor="let typeOfRole of typeOfRoles"
+                [value]="typeOfRole.id"
+              >
+                {{ typeOfRole.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div>
+            <label>האם תפקיד זה ניהולי</label>
+            <mat-radio-group
+              aria-label="isManegement"
+              ngDefaultControl
+              formControlName="isManegement"
+            >
+              <mat-radio-button color="accent" value="true" >ניהולי</mat-radio-button>
+              <mat-radio-button color="accent" value="false">לא ניהולי</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>תאריך תחילת עבודה:</mat-label>
+            <input
+              matInput
+              [matDatepickerFilter]="filterDateOfEntry"
+              [matDatepicker]="DateOfEntryIntoWork"
+              formControlName="DateOfEntryIntoWork"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="DateOfEntryIntoWork"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #DateOfEntryIntoWork></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="removeRole(i)"
+        >
+          מחק עבודה זו
+        </button>
+      </div>
+    </div>
+    <div>
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="addRole()"
+      >
+        הוסף עבודה חדשה
+      </button>
+    </div>
+    <div>
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="cancle()"
+      >
+        אל תשמור
+      </button>
+      <button mat-stroked-button type="submit" >סיים</button>
+        </div>
+  </div>
+</form>
